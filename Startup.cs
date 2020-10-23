@@ -52,16 +52,19 @@ namespace Keepr
       services.AddControllers();
 
       services.AddScoped<IDbConnection>(x => CreateDbConnection());
-
-
-
+      services.AddTransient<KeepsService>();
+      services.AddTransient<KeepsRepository>();
+      services.AddTransient<VaultsService>();
+      services.AddTransient<VaultsRepository>();
+      services.AddTransient<VaultKeepsService>();
+      services.AddTransient<VaultKeepsRepository>();
       services.AddTransient<ProfilesService>();
       services.AddTransient<ProfilesRepository>();
     }
 
     private IDbConnection CreateDbConnection()
     {
-      var connectionString = Configuration.GetSection("DB").GetValue<string>("gearhost");
+      var connectionString = Configuration.GetConnectionString("MySql");
       return new MySqlConnection(connectionString);
     }
 
