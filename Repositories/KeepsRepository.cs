@@ -57,11 +57,11 @@ namespace Keepr.Repositories
       _db.Execute(@"
       UPDATE keeps
       SET
-      name = @Name
-      description = @Description
-      img = @Img
-      views = @Views
-      shares = @Shares
+      name = @Name,
+      description = @Description,
+      img = @Img,
+      views = @Views,
+      shares = @Shares,
       keeps = @Keeps
       WHERE id = @Id
       ", keep);

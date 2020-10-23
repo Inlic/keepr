@@ -68,6 +68,7 @@ namespace Keepr.Controllers
         Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
         keep.CreatorId = userInfo.Id;
         keep.Creator = userInfo;
+        keep.Id = id;
         return Ok(_serv.Update(keep));
       }
       catch (System.Exception error)
