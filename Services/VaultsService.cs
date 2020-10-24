@@ -19,12 +19,16 @@ namespace Keepr.Services
       return _vrepo.Get();
     }
 
-    public Vault GetById(int id)
+    public Vault GetById(string userId, int id)
     {
       var data = _vrepo.GetById(id);
       if (data == null)
       {
         throw new Exception("Invalid Id");
+      }
+      if (data.CreatorId != userId && data.IsPrivate == true)
+      {
+        throw new Exception("You Do Not Own This Vault");
       }
       return data;
     }
@@ -39,7 +43,7 @@ namespace Keepr.Services
 
     public Vault Update(Vault vault)
     {
-      var original = GetById(vault.Id);
+      var original = _vrepo.GetById(vault.Id);
       if (original == null)
       {
         throw new Exception("Invalid Id");
@@ -55,7 +59,7 @@ namespace Keepr.Services
 
     public bool Delete(int id, string userId)
     {
-      var original = GetById(id);
+      var original = _vrepo.GetById(id);
       if (original == null)
       {
         throw new Exception("Invalid Id");

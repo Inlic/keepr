@@ -35,11 +35,12 @@ namespace Keepr.Controllers
     }
 
     [HttpGet("{id}")]
-    public ActionResult<Vault> Get(int id)
+    public async Task<ActionResult<Vault>> Get(int id)
     {
       try
       {
-        return Ok(_vserve.GetById(id));
+        Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
+        return Ok(_vserve.GetById(userInfo?.Id, id));
       }
       catch (Exception error)
       {

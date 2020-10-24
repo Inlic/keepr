@@ -47,7 +47,7 @@ namespace Keepr.Services
 
     public Keep Update(Keep keep)
     {
-      var original = GetById(keep.Id);
+      var original = _krepo.GetById(keep.Id);
       if (original == null)
       {
         throw new Exception("Invalid Id");
@@ -72,7 +72,7 @@ namespace Keepr.Services
 
     public bool Delete(int id, string userId)
     {
-      var original = GetById(id);
+      var original = _krepo.GetById(id);
       if (original == null)
       {
         throw new Exception("Invalid Id");
