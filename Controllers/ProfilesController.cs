@@ -14,9 +14,11 @@ namespace Keepr.Controllers
   public class ProfilesController : ControllerBase
   {
     private readonly ProfilesService _ps;
-    public ProfilesController(ProfilesService ps)
+    private readonly VaultsService _vs;
+    public ProfilesController(ProfilesService ps, VaultsService vs)
     {
       _ps = ps;
+      _vs = vs;
     }
 
 
@@ -32,6 +34,25 @@ namespace Keepr.Controllers
       catch (Exception e)
       {
         return BadRequest(e.Message);
+      }
+    }
+
+    [HttpGet("{id}/vaults")]
+    public async Task<ActionResult<IEnumerable<Vault>>> GetVaultsByProfile(string id)
+    {
+      try
+      {
+        Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
+        Profile queryProfile = _ps.GetProfileById(id);
+        if (queryProfile == null)
+        {
+          throw new Exception("Invalid Id");
+        }
+        return Ok(_vs.GetVaultsByCreatorId(queryProfile.Id, userInfo?.Id));
+      }
+      catch (Exception error)
+      {
+        return BadRequest(error.Message);
       }
     }
   }

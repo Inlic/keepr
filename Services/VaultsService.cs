@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Keepr.Models;
 using Keepr.Repositories;
 
@@ -27,7 +28,10 @@ namespace Keepr.Services
       }
       return data;
     }
-
+    internal List<Vault> GetVaultsByCreatorId(string queryProfileId, string userinfoId)
+    {
+      return _vrepo.GetVaultsByCreatorId(queryProfileId).ToList().FindAll(v => v.CreatorId == queryProfileId && v.IsPrivate == false);
+    }
     public Vault Create(Vault vault)
     {
       return _vrepo.Create(vault);

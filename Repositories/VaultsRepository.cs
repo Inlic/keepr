@@ -42,6 +42,21 @@ namespace Keepr.Repositories
       }, new { id }, splitOn: "id").FirstOrDefault();
     }
 
+    internal IEnumerable<Vault> GetVaultsByCreatorId(string userinfoId)
+    {
+      return _db.Query<Vault, Profile, Vault>(@"
+      SELECT v.*,
+      p.*
+      FROM vaults v
+      JOIN profiles p ON v.creatorid = profile.id
+      WHERE creatorid = @userinfoId;
+      ", (vault, profile) =>
+      {
+        vault.Creator = profile;
+        return vault;
+      }, new { userinfoId }, splitOn: "id");
+    }
+
     public Vault Create(Vault vault)
     {
       int id = _db.ExecuteScalar<int>(@"
