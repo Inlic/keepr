@@ -47,12 +47,12 @@ namespace Keepr.Controllers
       }
     }
 
-    [HttpGet("{vaultId}/keeps")]
-    public ActionResult<IEnumerable<VaultKeepViewModel>> GetKeepsByVaultId(int vaultId)
+    [HttpGet("{id}/keeps")]
+    public ActionResult<IEnumerable<VaultKeepViewModel>> GetKeepsByVaultId(int id)
     {
       try
       {
-        return Ok(_kserve.GetKeepsByVaultId(vaultId));
+        return Ok(_kserve.GetKeepsByVaultId(id));
       }
       catch (Exception error)
       {
