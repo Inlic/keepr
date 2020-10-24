@@ -34,12 +34,23 @@ namespace Keepr.Repositories
       SELECT k.*,
       p.*
       FROM keeps k
-      JOIN profiles p on k.creatorid = p.id
+      JOIN profiles p ON k.creatorid = p.id
       WHERE k.id = @id", (keep, profile) =>
       {
         keep.Creator = profile;
         return keep;
       }, new { id }, splitOn: "id").FirstOrDefault();
+    }
+
+    internal IEnumerable<Keep> GetKeepsByVaultId(int vaultId)
+    {
+      return _db.Query<VaultKeepViewModel>(@"
+      SELECT k.*,
+      vk.id AS VaultKeepId
+      FROM vaultkeeps vk
+      JOIN keeps k ON k.id = vk.keepid 
+      WHERE vaultid = @vaultId
+      ", new { vaultId });
     }
 
     public Keep Create(Keep keep)
@@ -75,6 +86,5 @@ namespace Keepr.Repositories
       ", new { id });
       return success > 0;
     }
-
   }
 }

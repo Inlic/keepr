@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using CodeWorks.Auth0Provider;
@@ -12,20 +13,20 @@ namespace Keepr.Controllers
   [ApiController]
   public class KeepsController : ControllerBase
   {
-    private readonly KeepsService _serv;
+    private readonly KeepsService _serve;
 
-    public KeepsController(KeepsService serv)
+    public KeepsController(KeepsService serve)
     {
-      _serv = serv;
+      _serve = serve;
     }
     [HttpGet]
     public ActionResult<IEnumerable<Keep>> Get()
     {
       try
       {
-        return Ok(_serv.Get());
+        return Ok(_serve.Get());
       }
-      catch (System.Exception error)
+      catch (Exception error)
       {
         return BadRequest(error.Message);
       }
@@ -36,9 +37,9 @@ namespace Keepr.Controllers
     {
       try
       {
-        return Ok(_serv.GetById(id));
+        return Ok(_serve.GetById(id));
       }
-      catch (System.Exception error)
+      catch (Exception error)
       {
         return BadRequest(error.Message);
       }
@@ -52,9 +53,9 @@ namespace Keepr.Controllers
         Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
         keep.CreatorId = userInfo.Id;
         keep.Creator = userInfo;
-        return Ok(_serv.Create(keep));
+        return Ok(_serve.Create(keep));
       }
-      catch (System.Exception error)
+      catch (Exception error)
       {
         return BadRequest(error.Message);
       }
@@ -69,9 +70,9 @@ namespace Keepr.Controllers
         keep.CreatorId = userInfo.Id;
         keep.Creator = userInfo;
         keep.Id = id;
-        return Ok(_serv.Update(keep));
+        return Ok(_serve.Update(keep));
       }
-      catch (System.Exception error)
+      catch (Exception error)
       {
         return BadRequest(error.Message);
       }
@@ -83,9 +84,9 @@ namespace Keepr.Controllers
       try
       {
         Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
-        return Ok(_serv.Delete(id, userInfo.Id));
+        return Ok(_serve.Delete(id, userInfo.Id));
       }
-      catch (System.Exception error)
+      catch (Exception error)
       {
         return BadRequest(error.Message);
       }

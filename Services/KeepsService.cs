@@ -7,20 +7,22 @@ namespace Keepr.Services
 {
   public class KeepsService
   {
-    private readonly KeepsRepository _repo;
+    private readonly KeepsRepository _krepo;
+    private readonly VaultsRepository _vrepo;
 
-    public KeepsService(KeepsRepository repo)
+    public KeepsService(KeepsRepository krepo, VaultsRepository vrepo)
     {
-      _repo = repo;
+      _krepo = krepo;
+      _vrepo = vrepo;
     }
     public List<Keep> Get()
     {
-      return _repo.Get();
+      return _krepo.Get();
     }
 
     public Keep GetById(int id)
     {
-      var data = _repo.GetById(id);
+      var data = _krepo.GetById(id);
       if (data == null)
       {
         throw new Exception("Invalid Id");
@@ -28,9 +30,19 @@ namespace Keepr.Services
       return data;
     }
 
+    internal IEnumerable<Keep> GetKeepsByVaultId(int vaultId)
+    {
+      var data = _vrepo.GetById(vaultId);
+      if (data == null)
+      {
+        throw new Exception("Invalid Id");
+      }
+      return _krepo.GetKeepsByVaultId(vaultId);
+    }
+
     public Keep Create(Keep keep)
     {
-      return _repo.Create(keep);
+      return _krepo.Create(keep);
     }
 
     public Keep Update(Keep keep)
@@ -50,7 +62,7 @@ namespace Keepr.Services
       keep.Views = keep.Views > 0 ? keep.Views : original.Views;
       keep.Shares = keep.Shares > 0 ? keep.Shares : original.Shares;
       keep.Keeps = keep.Keeps > 0 ? keep.Keeps : original.Keeps;
-      return _repo.Update(keep);
+      return _krepo.Update(keep);
     }
 
     public bool Delete(int id, string userId)
@@ -64,7 +76,7 @@ namespace Keepr.Services
       {
         throw new Exception("Invalid Permissions");
       }
-      _repo.Delete(id);
+      _krepo.Delete(id);
       return true;
     }
   }
