@@ -65,6 +65,11 @@ namespace Keepr.Services
       return _krepo.Update(keep);
     }
 
+    internal IEnumerable<Keep> GetKeepsByCreatorId(string queryProfileId, string userinfoId)
+    {
+      return _krepo.GetKeepsByCreatorId(queryProfileId);
+    }
+
     public bool Delete(int id, string userId)
     {
       var original = GetById(id);

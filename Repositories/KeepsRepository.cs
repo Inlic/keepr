@@ -79,6 +79,21 @@ namespace Keepr.Repositories
       return keep;
     }
 
+    internal IEnumerable<Keep> GetKeepsByCreatorId(string userinfoId)
+    {
+      return _db.Query<Keep, Profile, Keep>(@"
+      SELECT k.*,
+      p.*
+      FROM keeps k
+      JOIN profiles p on k.creatorid = p.id
+      WHERE creatorid = @userinfoId;
+      ", (keep, profile) =>
+      {
+        keep.Creator = profile;
+        return keep;
+      }, new { userinfoId }, splitOn: "id");
+    }
+
     public bool Delete(int id)
     {
       int success = _db.Execute(@"
