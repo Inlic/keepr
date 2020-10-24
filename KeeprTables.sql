@@ -1,8 +1,8 @@
 --Data Reset
---DROP TABLE vaultkeeps;
---DROP TABLE keeps;
---DROP TABLE vaults;
---DROP TABLE profiles;
+DROP TABLE vaultkeeps;
+DROP TABLE keeps;
+DROP TABLE vaults;
+DROP TABLE profiles;
 
 
 --New Tables

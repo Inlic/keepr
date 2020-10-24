@@ -48,7 +48,7 @@ namespace Keepr.Repositories
       SELECT v.*,
       p.*
       FROM vaults v
-      JOIN profiles p ON v.creatorid = profile.id
+      JOIN profiles p ON v.creatorid = p.id
       WHERE creatorid = @userinfoId;
       ", (vault, profile) =>
       {
@@ -60,8 +60,8 @@ namespace Keepr.Repositories
     public Vault Create(Vault vault)
     {
       int id = _db.ExecuteScalar<int>(@"
-     INSERT INTO vaults(name, description, isprivate)
-     VALUES(@Name, @Description, @IsPrivate)
+     INSERT INTO vaults(name, description, isprivate, creatorid)
+     VALUES(@Name, @Description, @IsPrivate, @CreatorId); SELECT LAST_INSERT_ID();
      ", vault);
       vault.Id = id;
       return vault;
