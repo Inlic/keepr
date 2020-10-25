@@ -1,8 +1,8 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-primary bg-primary">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
-        <h1 class="border border-primary">K</h1>
+        <h1 class="border border-dark">Keeper</h1>
       </div>
     </router-link>
     <button
@@ -17,6 +17,31 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
+      <div class="d-flex align-items-md-center w-100">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item" :class="{ active: $route.name == 'Home' }">
+            <router-link
+              id="nav-home-link"
+              :to="{ name: 'Home' }"
+              class="nav-link text-light"
+              >Home
+            </router-link>
+          </li>
+          <li
+            class="nav-item"
+            v-if="$auth.isAuthenticated"
+            :class="{ active: $route.name == 'Profile' }"
+          >
+            <router-link
+              id="nav-profile-link"
+              class="nav-link text-light"
+              :to="{ name: 'Profile' }"
+            >
+              Profile</router-link
+            >
+          </li>
+        </ul>
+      </div>
       <span class="navbar-text">
         <!-- Consider changing this to a profile picture -->
         <button
@@ -26,7 +51,7 @@
         >
           Login
         </button>
-        <button class="btn btn-danger" @click="logout" v-else>logout</button>
+        <button class="btn btn-secondary" @click="logout" v-else>logout</button>
       </span>
     </div>
   </nav>
