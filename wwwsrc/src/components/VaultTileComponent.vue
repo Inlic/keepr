@@ -1,6 +1,6 @@
 <template>
-  <div class="vault-tile-component card" @click="viewVault">
-    <h1>{{ vaultTileProp.name }}</h1>
+  <div class="vault-tile-component card">
+    <h1 @click="viewVault">{{ vaultTileProp.name }}</h1>
     <p>{{ vaultTileProp.description }}</p>
     <h4>{{ vaultTileProp.creator.email }}</h4>
   </div>
