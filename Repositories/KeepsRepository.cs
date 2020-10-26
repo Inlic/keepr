@@ -44,13 +44,19 @@ namespace Keepr.Repositories
 
     internal IEnumerable<Keep> GetKeepsByVaultId(int vaultId)
     {
-      return _db.Query<VaultKeepViewModel>(@"
+      return _db.Query<VaultKeepViewModel, Profile, VaultKeepViewModel>(@"
       SELECT k.*,
+      p.*,
       vk.id AS VaultKeepId
       FROM vaultkeeps vk
-      JOIN keeps k ON k.id = vk.keepid 
+      JOIN keeps k ON k.id = vk.keepid
+      JOIN profiles p ON k.creatorid = p.id 
       WHERE vaultid = @vaultId
-      ", new { vaultId });
+      ", (vaultkeep, profile) =>
+      {
+        vaultkeep.Creator = profile;
+        return vaultkeep;
+      }, new { vaultId });
     }
 
     public Keep Create(Keep keep)
