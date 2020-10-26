@@ -35,7 +35,7 @@
             <router-link
               id="nav-profile-link"
               class="nav-link text-light"
-              :to="{ name: 'Profile' }"
+              :to="{ name: 'Profile', params: { profileId: profile.id } }"
             >
               Profile</router-link
             >
@@ -73,6 +73,11 @@ export default {
     async logout() {
       resetBearer();
       await this.$auth.logout({ returnTo: window.location.origin });
+    },
+  },
+  computed: {
+    profile() {
+      return this.$store.state.profile;
     },
   },
 };

@@ -16,12 +16,12 @@ const routes = [
     component: Home,
   },
   {
-    path: "/profile",
+    path: "/profile/:profileId",
     name: "Profile",
     component: Profile
   },
   {
-    path: "/vaultdetails",
+    path: "/vault/:vaultId",
     name: "VaultDetails",
     component: VaultDetails
   }

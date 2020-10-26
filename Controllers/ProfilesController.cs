@@ -39,6 +39,18 @@ namespace Keepr.Controllers
       }
     }
 
+    [HttpGet("{id}")]
+    public ActionResult<Profile> GetProfileById(string id)
+    {
+      try
+      {
+        return Ok(_ps.GetProfileById(id));
+      }
+      catch (Exception error)
+      {
+        return BadRequest(error.Message);
+      }
+    }
     [HttpGet("{id}/keeps")]
     public async Task<ActionResult<IEnumerable<Keep>>> GetKeepsByProfile(string id)
     {
