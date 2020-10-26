@@ -10,7 +10,8 @@ export default new Vuex.Store({
     keeps: [],
     searchedProfile: {},
     profileVaults: [],
-    profileKeeps: []
+    profileKeeps: [],
+    activeKeep: {}
   },
   mutations: {
     setProfile(state, profile) {
@@ -27,6 +28,9 @@ export default new Vuex.Store({
     },
     setProfileVaults(state, profileVaults) {
       state.profileVaults = profileVaults;
+    },
+    setActiveKeep(state, keep) {
+      state.activeKeep = keep;
     }
   },
   actions: {
@@ -53,6 +57,9 @@ export default new Vuex.Store({
       } catch (error) {
         console.error(error);
       }
+    },
+    setActiveKeep({ commit }, keep) {
+      commit("setActiveKeep", keep)
     },
     async getProfileKeeps({ commit }, id) {
       try {

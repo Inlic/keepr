@@ -1,18 +1,46 @@
 <template>
-  <div class="keep-tile-component card">
-    <h1>{{ keepTileProp.name }}</h1>
-    <img :src="keepTileProp.img" />
-    <p>{{ keepTileProp.description }}</p>
-    <h4>{{ keepTileProp.creator.email }}</h4>
+  <div class="keep-tile-component">
+    <div
+      class="card"
+      data-toggle="modal"
+      :data-target="'#' + modalId"
+      @click="setActive"
+    >
+      <h1>{{ keepTileProp.name }}</h1>
+      <img :src="keepTileProp.img" />
+      <p>{{ keepTileProp.description }}</p>
+      <h4>{{ keepTileProp.creator.email }}</h4>
+    </div>
+    <modal-component :id="modalId" color="bg-danger">
+      <template v-slot:body>
+        <keep-details-component />
+      </template>
+    </modal-component>
   </div>
 </template>
 
 <script>
+import modalComponent from "./ModalComponent";
+import keepDetailsComponent from "./KeepDetailsComponent";
 export default {
   name: "keep-tile-component",
   props: ["keepTileProp"],
   data() {
     return {};
+  },
+  computed: {
+    modalId() {
+      return "modal" + this.keepTileProp.id;
+    },
+  },
+  methods: {
+    setActive() {
+      this.$store.dispatch("setActiveKeep", this.keepTileProp);
+    },
+  },
+  components: {
+    modalComponent,
+    keepDetailsComponent,
   },
 };
 </script>
