@@ -9,7 +9,8 @@
       <h1>{{ keepTileProp.name }}</h1>
       <img :src="keepTileProp.img" />
       <p>{{ keepTileProp.description }}</p>
-      <h4>{{ keepTileProp.creator.email }}</h4>
+      <h4>{{ keepTileProp.creator.name }}</h4>
+      <img :src="keepTileProp.creator.picture" @click.stop="viewProfile" />
     </div>
     <modal-component :id="modalId" color="bg-danger">
       <template v-slot:body>
@@ -36,6 +37,12 @@ export default {
   methods: {
     setActive() {
       this.$store.dispatch("setActiveKeep", this.keepTileProp);
+    },
+    viewProfile() {
+      this.$router.push({
+        name: "Profile",
+        params: { profileId: this.keepTileProp.creator.id },
+      });
     },
   },
   components: {

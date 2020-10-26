@@ -1,8 +1,21 @@
 <template>
-  <div class="vault-tile-component card">
-    <h1 @click="viewVault">{{ vaultTileProp.name }}</h1>
-    <p>{{ vaultTileProp.description }}</p>
-    <h4>{{ vaultTileProp.creator.email }}</h4>
+  <div class="vault-tile-component row card" @click="viewVault">
+    <div class="col-12">
+      <div class="row">
+        <h1>
+          {{ vaultTileProp.name }}
+          <i
+            class="fa fa-trash"
+            aria-hidden="true"
+            @click.stop="deleteVault"
+          ></i>
+        </h1>
+      </div>
+    </div>
+    <div class="col-12">
+      <p>{{ vaultTileProp.description }}</p>
+      <h4>{{ vaultTileProp.creator.email }}</h4>
+    </div>
   </div>
 </template>
 
@@ -20,9 +33,16 @@ export default {
         params: { vaultId: this.vaultTileProp.id },
       });
     },
+    deleteVault() {
+      this.$store.dispatch("deleteVault", this.vaultTileProp.id);
+    },
   },
 };
 </script>
 
 <style>
+.fa.fa-trash {
+  color: var(--danger);
+  cursor: pointer;
+}
 </style>
