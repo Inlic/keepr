@@ -30,7 +30,7 @@ namespace Keepr.Services
       return data;
     }
 
-    internal IEnumerable<Keep> GetKeepsByVaultId(int vaultId)
+    internal IEnumerable<VaultKeepViewModel> GetKeepsByVaultId(int vaultId)
     {
       var data = _vrepo.GetById(vaultId);
       if (data == null)

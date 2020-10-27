@@ -42,21 +42,22 @@ namespace Keepr.Repositories
       }, new { id }, splitOn: "id").FirstOrDefault();
     }
 
-    internal IEnumerable<Keep> GetKeepsByVaultId(int vaultId)
+    internal IEnumerable<VaultKeepViewModel> GetKeepsByVaultId(int vaultId)
     {
       return _db.Query<VaultKeepViewModel, Profile, VaultKeepViewModel>(@"
       SELECT k.*,
-      p.*,
-      vk.id AS VaultKeepId
+      vk.id as VaultKeepId,
+      p.*
       FROM vaultkeeps vk
-      JOIN keeps k ON k.id = vk.keepid
-      JOIN profiles p ON k.creatorid = p.id 
-      WHERE vaultid = @vaultId
-      ", (vaultkeep, profile) =>
+      JOIN keeps k ON k.id = vk.keepId
+      JOIN profiles p on k.creatorid = p.id
+      WHERE vaultid = @vaultId",
+      (keep, profile) =>
       {
-        vaultkeep.Creator = profile;
-        return vaultkeep;
-      }, new { vaultId });
+        keep.Creator = profile;
+        return keep;
+      }
+      , new { vaultId }, splitOn: "id");
     }
 
     public Keep Create(Keep keep)
