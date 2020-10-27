@@ -15,11 +15,19 @@
           ></i>
         </h5>
       </div>
-      <h1>{{ keepTileProp.name }}</h1>
-      <img :src="keepTileProp.img" />
-      <p>{{ keepTileProp.description }}</p>
-      <h4>{{ keepTileProp.creator.name }}</h4>
-      <img :src="keepTileProp.creator.picture" @click.stop="viewProfile" />
+      <div class="card bg-dark text-white">
+        <img class="card-img" :src="keepTileProp.img" alt="Card image" />
+        <div class="card-img-overlay">
+          <h5 class="card-title">{{ keepTileProp.name }}</h5>
+          <div>
+            <img
+              class="profileimg"
+              :src="keepTileProp.creator.picture"
+              @click.stop="viewProfile"
+            />
+          </div>
+        </div>
+      </div>
     </div>
     <modal-component :id="modalId" color="bg-danger">
       <template v-slot:body>
@@ -75,5 +83,12 @@ export default {
 .fa.fa-times {
   color: var(--danger);
   cursor: pointer;
+}
+.profileimg {
+  max-height: 50px;
+  max-width: 50px;
+  position: absolute;
+  bottom: 8px;
+  right: 16px;
 }
 </style>

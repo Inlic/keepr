@@ -2,8 +2,8 @@
   <!-- Modal -->
   <div class="modal fade" :id="id" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
-      <div class="modal-content" :class="color">
-        <div class="modal-header">
+      <div class="modal-content p-3 bg-white" :class="color">
+        <div class="modal-header bg-white">
           <slot name="header"></slot>
           <button
             type="button"
@@ -15,11 +15,13 @@
           </button>
         </div>
         <slot name="body"></slot>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">
-            Close
-          </button>
-        </div>
+        <button
+          type="button"
+          class="btn btn-secondary mt-2"
+          data-dismiss="modal"
+        >
+          Close
+        </button>
       </div>
     </div>
   </div>

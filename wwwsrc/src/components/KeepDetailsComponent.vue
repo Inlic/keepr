@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div>
     <h1>{{ keep.name }}</h1>
     <img :src="keep.img" />
     <p>{{ keep.description }}</p>
