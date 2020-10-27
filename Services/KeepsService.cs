@@ -65,6 +65,19 @@ namespace Keepr.Services
       return _krepo.Update(keep);
     }
 
+    internal object UpdateStats(Keep keep)
+    {
+      var original = _krepo.GetById(keep.Id);
+      if (original == null)
+      {
+        throw new Exception("Invalid Id");
+      }
+      keep.Views = keep.Views > 0 ? keep.Views : original.Views;
+      keep.Shares = keep.Shares > 0 ? keep.Shares : original.Shares;
+      keep.Keeps = keep.Keeps > 0 ? keep.Keeps : original.Keeps;
+      return _krepo.UpdateStats(keep);
+    }
+
     internal IEnumerable<Keep> GetKeepsByCreatorId(string queryProfileId, string userinfoId)
     {
       return _krepo.GetKeepsByCreatorId(queryProfileId);
@@ -84,5 +97,7 @@ namespace Keepr.Services
       _krepo.Delete(id);
       return true;
     }
+
+
   }
 }

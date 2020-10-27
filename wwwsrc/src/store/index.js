@@ -8,6 +8,7 @@ export default new Vuex.Store({
   state: {
     profile: {},
     keeps: [],
+    vaults: [],
     searchedProfile: {},
     profileVaults: [],
     profileKeeps: [],
@@ -24,6 +25,9 @@ export default new Vuex.Store({
     },
     setKeeps(state, keeps) {
       state.keeps = keeps;
+    },
+    setVaults(state, vaults) {
+      state.vaults = vaults;
     },
     setProfileKeeps(state, profileKeeps) {
       state.profileKeeps = profileKeeps;
@@ -66,8 +70,22 @@ export default new Vuex.Store({
         console.error(error);
       }
     },
-    setActiveKeep({ commit }, keep) {
-      commit("setActiveKeep", keep)
+    async getVaults({ commit }) {
+      try {
+        let res = await api.get("vaults")
+        commit("setVaults", res.data)
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async setActiveKeep({ commit }, keep) {
+      try {
+        keep.views += 1
+        await api.put("keeps/" + keep.id + "/stats", keep)
+        commit("setActiveKeep", keep)
+      } catch (error) {
+        console.error(error);
+      }
     },
     async getProfileKeeps({ commit }, id) {
       try {
@@ -105,6 +123,15 @@ export default new Vuex.Store({
       try {
         let res = await api.post("keeps", keepData)
         dispatch("getProfileKeeps", res.data.creatorId)
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async deleteKeep({ commit }, id) {
+      try {
+        await api.delete("keeps/" + id)
+        commit("setKeeps", this.state.keeps.filter(k => k.id != id))
+        commit("setProfileKeeps", this.state.profileKeeps.filter(k => k.id != id))
       } catch (error) {
         console.error(error);
       }

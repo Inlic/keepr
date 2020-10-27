@@ -85,6 +85,19 @@ namespace Keepr.Repositories
       return keep;
     }
 
+    internal object UpdateStats(Keep keep)
+    {
+      _db.Execute(@"
+      UPDATE keeps
+      SET
+      views = @Views,
+      shares = @Shares,
+      keeps = @Keeps
+      WHERE id = @Id
+      ", keep);
+      return keep;
+    }
+
     internal IEnumerable<Keep> GetKeepsByCreatorId(string userinfoId)
     {
       return _db.Query<Keep, Profile, Keep>(@"

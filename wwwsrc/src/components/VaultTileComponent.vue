@@ -1,5 +1,5 @@
 <template>
-  <div class="vault-tile-component row card" @click="viewVault">
+  <div class="vault-tile-component card" @click="viewVault">
     <div class="col-12">
       <div class="row">
         <h1>

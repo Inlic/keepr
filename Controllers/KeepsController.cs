@@ -77,6 +77,22 @@ namespace Keepr.Controllers
         return BadRequest(error.Message);
       }
     }
+    [HttpPut("{id}/stats")]
+    public async Task<ActionResult<Keep>> UpdateStats([FromBody] Keep keep, int id)
+    {
+      try
+      {
+        Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
+        keep.CreatorId = userInfo.Id;
+        keep.Creator = userInfo;
+        keep.Id = id;
+        return Ok(_serve.UpdateStats(keep));
+      }
+      catch (Exception error)
+      {
+        return BadRequest(error.Message);
+      }
+    }
     [HttpDelete("{id}")]
     [Authorize]
     public async Task<ActionResult<bool>> Delete(int id)

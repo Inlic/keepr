@@ -34,6 +34,10 @@ namespace Keepr.Services
     }
     internal List<Vault> GetVaultsByCreatorId(string queryProfileId, string userinfoId)
     {
+      if (queryProfileId == userinfoId)
+      {
+        return _vrepo.GetVaultsByCreatorId(queryProfileId).ToList();
+      }
       return _vrepo.GetVaultsByCreatorId(queryProfileId).ToList().FindAll(v => v.CreatorId == queryProfileId && v.IsPrivate == false);
     }
     public Vault Create(Vault vault)

@@ -8,7 +8,7 @@
         v-model="vaultData.description"
         placeholder="New Vault Description..."
       />
-      <input type="checkbox" v-model="vaultData.isprivate" />
+      <input type="checkbox" v-model="vaultData.isPrivate" />
       <button type="submit" class="btn btn-primary"></button>
     </form>
   </div>
@@ -29,6 +29,7 @@ export default {
   },
   methods: {
     createVault() {
+      console.log(this.vaultData);
       this.$store.dispatch("createVault", this.vaultData);
       $("#modalcreateVault").modal("hide");
     },

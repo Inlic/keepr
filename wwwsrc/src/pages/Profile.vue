@@ -6,7 +6,7 @@
       <h2>Vaults: {{ vaults.length }}</h2>
       <h2>Keeps: {{ keeps.length }}</h2>
     </div>
-    <div class="row">
+    <div class="row card">
       <div class="card col-12">
         <h2>
           Vaults
@@ -25,8 +25,6 @@
           :vaultTileProp="vault"
         />
       </div>
-    </div>
-    <div class="row">
       <div class="card col-12">
         <h2>
           Keeps
