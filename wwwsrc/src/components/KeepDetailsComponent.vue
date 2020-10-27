@@ -67,6 +67,7 @@ export default {
       this.$store.dispatch("createVaultKeep", {
         keepid: this.keep.id,
         vaultid: this.vaultKeep.VaultId,
+        keeps: this.keep.keeps,
       });
     },
   },
