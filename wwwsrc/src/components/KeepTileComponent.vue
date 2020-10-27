@@ -6,13 +6,15 @@
       :data-target="'#' + modalId"
       @click="setActive"
     >
-      <h1 v-if="vaultTileProp">
-        <i
-          class="fa fa-trash"
-          aria-hidden="true"
-          @click.stop="removeKeepFromVault"
-        ></i>
-      </h1>
+      <div v-if="vaultTileProp">
+        <h5 class="float-right" v-if="vaultTileProp.name">
+          <i
+            class="fa fa-times mr-1"
+            aria-hidden="true"
+            @click.stop="removeKeepFromVault"
+          ></i>
+        </h5>
+      </div>
       <h1>{{ keepTileProp.name }}</h1>
       <img :src="keepTileProp.img" />
       <p>{{ keepTileProp.description }}</p>
@@ -70,4 +72,8 @@ export default {
 </script>
 
 <style>
+.fa.fa-times {
+  color: var(--danger);
+  cursor: pointer;
+}
 </style>

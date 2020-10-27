@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg navbar-primary bg-primary">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
-        <h1 class="border border-dark">Keeper</h1>
+        <h1 class="border border-dark p-1">K</h1>
       </div>
     </router-link>
     <button
