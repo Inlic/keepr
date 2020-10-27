@@ -15,6 +15,7 @@
     <div class="col-12">
       <p>{{ vaultTileProp.description }}</p>
       <h4>{{ vaultTileProp.creator.email }}</h4>
+      <h1 v-if="vaultTileProp.isPrivate" style="color: red">PRIVATE</h1>
     </div>
   </div>
 </template>

@@ -18,6 +18,18 @@ namespace Keepr.Controllers
     {
       _serve = serve;
     }
+    [HttpGet("{vaultid}/{keepid}")]
+    public ActionResult<int> Get(int vaultid, int keepid)
+    {
+      try
+      {
+        return Ok(_serve.Get(vaultid, keepid));
+      }
+      catch (Exception error)
+      {
+        return BadRequest(error.Message);
+      }
+    }
     [HttpPost]
     [Authorize]
     public async Task<ActionResult<VaultKeep>> Post([FromBody] VaultKeep newVk)

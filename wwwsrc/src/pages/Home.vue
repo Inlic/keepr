@@ -34,6 +34,9 @@ export default {
     vaults() {
       return this.$store.state.vaults;
     },
+    profile() {
+      return this.$store.state.profile;
+    },
   },
   components: { keepTileComponent },
 };

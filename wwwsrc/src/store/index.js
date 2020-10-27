@@ -158,6 +158,15 @@ export default new Vuex.Store({
         console.error(error);
       }
     },
+    async removeKeepFromVault({ dispatch }, payload) {
+      try {
+        let res = await api.get("vaultkeeps/" + payload.vaultid + "/" + payload.keepid)
+        await api.delete("vaultkeeps/" + res.data)
+        dispatch("getVaultKeeps", payload.vaultid)
+      } catch (error) {
+        console.error(error);
+      }
+    },
     async getProfileVaults({ commit }, id) {
       try {
         let res = await api.get("profiles/" + id + "/vaults")

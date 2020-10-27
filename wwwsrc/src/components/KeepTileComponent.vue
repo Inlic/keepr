@@ -6,6 +6,13 @@
       :data-target="'#' + modalId"
       @click="setActive"
     >
+      <h1 v-if="vaultTileProp">
+        <i
+          class="fa fa-trash"
+          aria-hidden="true"
+          @click.stop="removeKeepFromVault"
+        ></i>
+      </h1>
       <h1>{{ keepTileProp.name }}</h1>
       <img :src="keepTileProp.img" />
       <p>{{ keepTileProp.description }}</p>
@@ -25,7 +32,7 @@ import modalComponent from "./ModalComponent";
 import keepDetailsComponent from "./KeepDetailsComponent";
 export default {
   name: "keep-tile-component",
-  props: ["keepTileProp"],
+  props: ["keepTileProp", "vaultTileProp"],
   data() {
     return {};
   },
@@ -46,6 +53,12 @@ export default {
       this.$router.push({
         name: "Profile",
         params: { profileId: this.keepTileProp.creator.id },
+      });
+    },
+    removeKeepFromVault() {
+      this.$store.dispatch("removeKeepFromVault", {
+        vaultid: this.vaultTileProp.id,
+        keepid: this.keepTileProp.id,
       });
     },
   },

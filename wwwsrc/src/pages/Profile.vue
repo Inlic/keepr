@@ -65,10 +65,23 @@ import newKeepFormComponent from "../components/NewKeepFormComponent";
 import newVaultFormComponent from "../components/NewVaultFormComponent";
 export default {
   name: "Profile",
+  data() {
+    return {};
+  },
   mounted() {
     this.$store.dispatch("getSearchedProfile", this.$route.params.profileId);
     this.$store.dispatch("getProfileVaults", this.$route.params.profileId);
     this.$store.dispatch("getProfileKeeps", this.$route.params.profileId);
+  },
+  watch: {
+    myprofile: function (newVal, oldVal) {
+      this.$store.dispatch("getSearchedProfile", this.$route.params.profileId);
+      this.$store.dispatch("getProfileVaults", this.$route.params.profileId);
+      this.$store.dispatch("getProfileKeeps", this.$route.params.profileId);
+      console.log("new" + newVal + "| old" + oldVal);
+    },
+    deep: true,
+    immediate: true,
   },
   computed: {
     createKeepModal() {
@@ -85,6 +98,9 @@ export default {
     },
     keeps() {
       return this.$store.state.profileKeeps;
+    },
+    myprofile() {
+      return this.$store.state.profile;
     },
   },
   components: {

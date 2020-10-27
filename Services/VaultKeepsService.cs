@@ -24,6 +24,13 @@ namespace Keepr.Services
       newVk.Id = id;
       return newVk;
     }
+
+    internal int Get(int vaultid, int keepid)
+    {
+      int vkid = _repo.Get(vaultid, keepid);
+      return vkid;
+    }
+
     public VaultKeep GetById(int id)
     {
       var data = _repo.GetById(id);

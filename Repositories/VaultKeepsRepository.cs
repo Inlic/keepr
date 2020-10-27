@@ -35,5 +35,15 @@ namespace Keepr.Repositories
       DELETE FROM vaultkeeps WHERE id = @id", new { id });
       return success > 0;
     }
+
+    internal int Get(int vaultid, int keepid)
+    {
+      return _db.QueryFirstOrDefault<int>(@"
+      SELECT id
+      FROM vaultkeeps 
+      WHERE vaultid = @vaultid AND
+      keepid = @keepid
+      ", new { vaultid, keepid });
+    }
   }
 }
