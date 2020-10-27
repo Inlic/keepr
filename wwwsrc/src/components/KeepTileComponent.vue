@@ -33,6 +33,9 @@ export default {
     modalId() {
       return "modal" + this.keepTileProp.id;
     },
+    profile() {
+      return this.$store.state.profile;
+    },
   },
   methods: {
     setActive() {

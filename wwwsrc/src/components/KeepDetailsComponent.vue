@@ -9,10 +9,16 @@
         {{ keep.keeps }}
       </h5>
     </div>
-    <h4>
-      <h4 v-if="keep.creator">{{ keep.creator.email }}</h4>
-      <i class="fa fa-trash" aria-hidden="true" @click.stop="deleteKeep"></i>
-    </h4>
+    <div v-if="keep.creator">
+      <h4>{{ keep.creator.email }}</h4>
+
+      <i
+        v-if="keep.creator.id == profile.id"
+        class="fa fa-trash"
+        aria-hidden="true"
+        @click.stop="deleteKeep"
+      ></i>
+    </div>
   </div>
 </template>
 
@@ -22,6 +28,9 @@ export default {
   computed: {
     keep() {
       return this.$store.state.activeKeep;
+    },
+    profile() {
+      return this.$store.state.profile;
     },
   },
   methods: {

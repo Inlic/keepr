@@ -83,8 +83,6 @@ namespace Keepr.Controllers
       try
       {
         Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
-        keep.CreatorId = userInfo.Id;
-        keep.Creator = userInfo;
         keep.Id = id;
         return Ok(_serve.UpdateStats(keep));
       }

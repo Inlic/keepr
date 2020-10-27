@@ -24,8 +24,11 @@ const routes = [
     path: "/vault/:vaultId",
     name: "VaultDetails",
     component: VaultDetails
+  },
+  {
+    path: "*",
+    redirect: "/"
   }
-
 ];
 
 const router = new VueRouter({
