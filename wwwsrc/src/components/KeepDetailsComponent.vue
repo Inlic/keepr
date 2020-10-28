@@ -6,7 +6,9 @@
     <div class="col-12 col-md-6 mt-2">
       <div class="row">
         <h5 class="ml-2">
-          Views: {{ keep.views }} | Shares: {{ keep.shares }} | Keeps:
+          <i class="fa fa-eye" aria-hidden="true"></i> {{ keep.views }} |
+          <i class="fa fa-share" aria-hidden="true"></i> {{ keep.shares }} |
+          <i class="fa fa-lock" aria-hidden="true"></i>
           {{ keep.keeps }}
         </h5>
       </div>
@@ -111,5 +113,10 @@ export default {
   position: relative;
   top: 1em;
   right: 1em;
+}
+.fa.fa-eye,
+.fa.fa-share,
+.fa.fa-lock {
+  color: var(--primary);
 }
 </style>
