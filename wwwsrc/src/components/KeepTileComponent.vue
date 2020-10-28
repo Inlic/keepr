@@ -8,7 +8,7 @@
             <h5 class="removefromvault" v-if="vaultTileProp.name">
               <i
                 v-if="profile.id == vaultTileProp.creatorId"
-                class="fa fa-times mr-1"
+                class="fa fa-times mr-1 tshadowalt"
                 aria-hidden="true"
                 @click.stop="removeKeepFromVault"
               ></i>
@@ -105,5 +105,8 @@ export default {
 }
 .tshadow {
   text-shadow: 2px 2px gray;
+}
+.tshadowalt {
+  text-shadow: 1px 1px black;
 }
 </style>
