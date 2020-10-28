@@ -7,6 +7,7 @@
           <div v-if="vaultTileProp">
             <h5 class="removefromvault" v-if="vaultTileProp.name">
               <i
+                v-if="profile.id == vaultTileProp.creatorId"
                 class="fa fa-times mr-1"
                 aria-hidden="true"
                 @click.stop="removeKeepFromVault"

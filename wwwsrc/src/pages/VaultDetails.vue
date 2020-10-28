@@ -3,7 +3,12 @@
     <div class="row my-4">
       <h1 class="col-12">
         {{ vault.name }}
-        <i class="fa fa-trash" aria-hidden="true" @click="deleteVault"></i>
+        <i
+          v-if="myprofile.id == vault.creatorId"
+          class="fa fa-trash"
+          aria-hidden="true"
+          @click="deleteVault"
+        ></i>
       </h1>
       <h5 class="col-12">Keeps: {{ keeps.length }}</h5>
     </div>

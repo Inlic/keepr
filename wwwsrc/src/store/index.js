@@ -115,9 +115,11 @@ export default new Vuex.Store({
     },
     async deleteVault({ commit }, id) {
       try {
-        await api.delete("vaults/" + id)
-        commit("setProfileVaults", this.state.profileVaults.filter(v => v.id != id))
-        router.push({ name: "Profile", params: { profileId: this.state.profile.id } })
+        if (await as.confirmDelete()) {
+          await api.delete("vaults/" + id)
+          commit("setProfileVaults", this.state.profileVaults.filter(v => v.id != id))
+          router.push({ name: "Profile", params: { profileId: this.state.profile.id } })
+        }
       } catch (error) {
         console.error(error);
       }
@@ -132,9 +134,11 @@ export default new Vuex.Store({
     },
     async deleteKeep({ commit }, id) {
       try {
-        await api.delete("keeps/" + id)
-        commit("setKeeps", this.state.keeps.filter(k => k.id != id))
-        commit("setProfileKeeps", this.state.profileKeeps.filter(k => k.id != id))
+        if (await as.confirmDelete()) {
+          await api.delete("keeps/" + id)
+          commit("setKeeps", this.state.keeps.filter(k => k.id != id))
+          commit("setProfileKeeps", this.state.profileKeeps.filter(k => k.id != id))
+        }
       } catch (error) {
         console.error(error);
       }
@@ -164,9 +168,11 @@ export default new Vuex.Store({
     },
     async removeKeepFromVault({ dispatch }, payload) {
       try {
-        let res = await api.get("vaultkeeps/" + payload.vaultid + "/" + payload.keepid)
-        await api.delete("vaultkeeps/" + res.data)
-        dispatch("getVaultKeeps", payload.vaultid)
+        if (await as.confirmDelete()) {
+          let res = await api.get("vaultkeeps/" + payload.vaultid + "/" + payload.keepid)
+          await api.delete("vaultkeeps/" + res.data)
+          dispatch("getVaultKeeps", payload.vaultid)
+        }
       } catch (error) {
         console.error(error);
       }

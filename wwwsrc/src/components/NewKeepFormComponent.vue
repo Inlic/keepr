@@ -1,19 +1,32 @@
 <template>
   <div>
-    <h1>Hello I am a new keep form</h1>
+    <h1>New Keep</h1>
     <form @submit.prevent="createKeep">
-      <input type="text" v-model="keepData.name" placeholder="Keep Name..." />
-      <input
-        type="text"
-        v-model="keepData.description"
-        placeholder="New Keep Description..."
-      />
-      <input
-        type="text"
-        v-model="keepData.img"
-        placeholder="New Keep Image URL..."
-      />
-      <button type="submit" class="btn btn-primary"></button>
+      <div class="form-group">
+        <input
+          class="form-control"
+          type="text"
+          v-model="keepData.name"
+          placeholder="Keep Name..."
+        />
+      </div>
+      <div class="form-group">
+        <input
+          class="form-control"
+          type="text"
+          v-model="keepData.description"
+          placeholder="New Keep Description..."
+        />
+      </div>
+      <div class="form-group">
+        <input
+          class="form-control"
+          type="text"
+          v-model="keepData.img"
+          placeholder="New Keep Image URL..."
+        />
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
     </form>
   </div>
 </template>

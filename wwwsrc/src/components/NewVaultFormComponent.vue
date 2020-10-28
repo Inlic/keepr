@@ -1,15 +1,33 @@
 <template>
   <div>
-    <h1>Hello I am a new vault form</h1>
+    <h1>New Vault</h1>
     <form @submit.prevent="createVault">
-      <input type="text" v-model="vaultData.name" placeholder="Vault Name..." />
-      <input
-        type="text"
-        v-model="vaultData.description"
-        placeholder="New Vault Description..."
-      />
-      <input type="checkbox" v-model="vaultData.isPrivate" />
-      <button type="submit" class="btn btn-primary"></button>
+      <div class="form-group">
+        <input
+          class="form-control"
+          type="text"
+          v-model="vaultData.name"
+          placeholder="Vault Name..."
+        />
+      </div>
+      <div class="form-group">
+        <input
+          class="form-control"
+          type="text"
+          v-model="vaultData.description"
+          placeholder="New Vault Description..."
+        />
+      </div>
+      <div class="form-check">
+        <input
+          id="Check1"
+          class="form-check-input"
+          type="checkbox"
+          v-model="vaultData.isPrivate"
+        />
+        <label class="form-check-label" for="Check1">Private?</label>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
     </form>
   </div>
 </template>

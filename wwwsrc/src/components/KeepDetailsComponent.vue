@@ -1,9 +1,9 @@
 <template>
   <div class="row">
-    <div class="col-12 col-md-6">
+    <div class="col-12 col-md-6 text-center mt-2">
       <img :src="keep.img" />
     </div>
-    <div class="col-12 col-md-6">
+    <div class="col-12 col-md-6 mt-2">
       <h1>{{ keep.name }}</h1>
       <p>{{ keep.description }}</p>
       <h5>
