@@ -1,8 +1,8 @@
 <template>
   <div class="container-fluid">
-    <div class="row">
-      <h1>{{ vault.name }}</h1>
-      <h3>Keeps: {{ keeps.length }}</h3>
+    <div class="row my-2">
+      <h1 class="col-12">{{ vault.name }}</h1>
+      <h5 class="col-12">Keeps: {{ keeps.length }}</h5>
     </div>
     <div class="row">
       <keep-tile-component

@@ -1,18 +1,18 @@
 <template>
   <div class="keep-tile-component">
     <div data-toggle="modal" :data-target="'#' + modalId" @click="setActive">
-      <div v-if="vaultTileProp">
-        <h5 class="float-right" v-if="vaultTileProp.name">
-          <i
-            class="fa fa-times mr-1"
-            aria-hidden="true"
-            @click.stop="removeKeepFromVault"
-          ></i>
-        </h5>
-      </div>
       <div class="card bg-dark text-white">
         <img class="card-img" :src="keepTileProp.img" alt="Card image" />
         <div class="card-img-overlay">
+          <div v-if="vaultTileProp">
+            <h5 class="removefromvault" v-if="vaultTileProp.name">
+              <i
+                class="fa fa-times mr-1"
+                aria-hidden="true"
+                @click.stop="removeKeepFromVault"
+              ></i>
+            </h5>
+          </div>
           <h5 class="card-title">{{ keepTileProp.name }}</h5>
           <div>
             <img
@@ -24,7 +24,7 @@
         </div>
       </div>
     </div>
-    <modal-component :id="modalId" color="bg-danger">
+    <modal-component :id="modalId" color="bg-white">
       <template v-slot:body>
         <keep-details-component />
       </template>
@@ -80,14 +80,21 @@ export default {
   cursor: pointer;
 }
 .profileimg {
-  max-height: 50px;
-  max-width: 50px;
+  max-height: 25px;
+  max-width: 25px;
   position: absolute;
   bottom: 8px;
   right: 16px;
+  border-radius: 25px;
+  cursor: pointer;
 }
 .keep-tile-component {
   display: inline-block;
   margin-left: 0.25em;
+}
+.removefromvault {
+  position: absolute;
+  top: 8px;
+  right: 16px;
 }
 </style>

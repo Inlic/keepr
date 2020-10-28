@@ -1,39 +1,41 @@
 <template>
-  <div>
-    <h1>{{ keep.name }}</h1>
-    <img :src="keep.img" />
-    <p>{{ keep.description }}</p>
-    <div>
+  <div class="row">
+    <div class="col-12 col-md-6">
+      <img :src="keep.img" />
+    </div>
+    <div class="col-12 col-md-6">
+      <h1>{{ keep.name }}</h1>
+      <p>{{ keep.description }}</p>
       <h5>
-        Views: {{ keep.views }} Shares: {{ keep.shares }} Keeps:
+        Views: {{ keep.views }} | Shares: {{ keep.shares }} | Keeps:
         {{ keep.keeps }}
       </h5>
-    </div>
-    <div v-if="keep.creator">
-      <h5>
-        {{ keep.creator.email }}
+      <div v-if="keep.creator">
         <i
           v-if="keep.creator.id == profile.id"
           class="fa fa-trash"
           aria-hidden="true"
           @click.stop="deleteKeep"
         ></i>
-        <img class="detailsimg float-right p-2" :src="keep.creator.picture" />
-      </h5>
-      <div class="input-group">
-        <select class="custom-select" v-model="vaultKeep.VaultId">
-          <option v-for="vault in myVaults" :key="vault.id" :value="vault.id">
-            {{ vault.name }}
-          </option>
-        </select>
-        <div class="input-group-append">
-          <button
-            class="btn btn-primary"
-            type="button"
-            @click="createVaultKeep"
-          >
-            Add to Vault
-          </button>
+        | {{ keep.creator.email }} |
+        <img class="detailsimg p-2" :src="keep.creator.picture" />
+      </div>
+      <div>
+        <div class="input-group">
+          <select class="custom-select" v-model="vaultKeep.VaultId">
+            <option v-for="vault in myVaults" :key="vault.id" :value="vault.id">
+              {{ vault.name }}
+            </option>
+          </select>
+          <div class="input-group-append">
+            <button
+              class="btn btn-primary"
+              type="button"
+              @click="createVaultKeep"
+            >
+              Add to Vault
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -86,5 +88,6 @@ export default {
   max-height: 50px;
   max-width: 50px;
   cursor: pointer;
+  border-radius: 25px;
 }
 </style>
