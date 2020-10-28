@@ -1,10 +1,13 @@
 <template>
   <div class="container-fluid">
     <div class="row my-2">
-      <h1 class="col-12">{{ vault.name }}</h1>
+      <h1 class="col-12">
+        {{ vault.name }}
+        <i class="fa fa-trash" aria-hidden="true" @click="deleteVault"></i>
+      </h1>
       <h5 class="col-12">Keeps: {{ keeps.length }}</h5>
     </div>
-    <div class="row">
+    <div class="card-columns">
       <keep-tile-component
         v-for="keep in keeps"
         :key="keep.id"
@@ -31,6 +34,12 @@ export default {
     deep: true,
     immediate: true,
   },
+  methods: {
+    deleteVault() {
+      console.log("clicked");
+      this.$store.dispatch("deleteVault", this.vault.id);
+    },
+  },
   computed: {
     vault() {
       return this.$store.state.activeVault;
@@ -47,4 +56,8 @@ export default {
 </script>
 
 <style>
+.fa.fa-trash {
+  color: grey;
+  cursor: pointer;
+}
 </style>

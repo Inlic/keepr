@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import { api } from "../services/AxiosService.js";
 import as from "../services/alertsService.js";
+import router from "../router/index.js";
 
 Vue.use(Vuex);
 
@@ -116,6 +117,7 @@ export default new Vuex.Store({
       try {
         await api.delete("vaults/" + id)
         commit("setProfileVaults", this.state.profileVaults.filter(v => v.id != id))
+        router.push({ name: "Profile", params: { profileId: this.state.profile.id } })
       } catch (error) {
         console.error(error);
       }

@@ -5,6 +5,7 @@
   border-width: medium;
 }
 
+
 .card-columns {
   @include media-breakpoint-only(xs) {
     column-count: 2;

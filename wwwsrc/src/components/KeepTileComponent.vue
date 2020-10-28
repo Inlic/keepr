@@ -1,7 +1,7 @@
 <template>
-  <div class="keep-tile-component">
+  <div class="keep-tile-component card">
     <div data-toggle="modal" :data-target="'#' + modalId" @click="setActive">
-      <div class="card bg-dark text-white">
+      <div class="card bg-dark text-white mb-0">
         <img class="card-img" :src="keepTileProp.img" alt="Card image" />
         <div class="card-img-overlay">
           <div v-if="vaultTileProp">
