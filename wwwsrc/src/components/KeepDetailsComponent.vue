@@ -21,7 +21,7 @@
         <img class="detailsimg p-2" :src="keep.creator.picture" />
       </div>
       <div>
-        <div class="input-group">
+        <div v-if="$auth.isAuthenticated" class="input-group">
           <select class="custom-select" v-model="vaultKeep.VaultId">
             <option v-for="vault in myVaults" :key="vault.id" :value="vault.id">
               {{ vault.name }}

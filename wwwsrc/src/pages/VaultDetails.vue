@@ -1,6 +1,6 @@
 <template>
-  <div class="container-fluid">
-    <div class="row my-2">
+  <div class="container">
+    <div class="row my-4">
       <h1 class="col-12">
         {{ vault.name }}
         <i class="fa fa-trash" aria-hidden="true" @click="deleteVault"></i>

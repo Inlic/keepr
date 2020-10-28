@@ -1,20 +1,11 @@
 <template>
-  <div class="vault-tile-component card" @click="viewVault">
-    <div class="col-12">
-      <div class="row">
-        <h1>
-          {{ vaultTileProp.name }}
-          <i
-            class="fa fa-trash"
-            aria-hidden="true"
-            @click.stop="deleteVault"
-          ></i>
-        </h1>
-      </div>
-    </div>
-    <div class="col-12">
-      <p>{{ vaultTileProp.description }}</p>
-      <h4>{{ vaultTileProp.creator.email }}</h4>
+  <div
+    class="card bg-dark text-light vault-tile-component ml-2"
+    @click="viewVault"
+  >
+    <img src="https://www.placecage.com/200/200" class="card-img" alt="..." />
+    <div class="card-img-overlay">
+      <h5 class="card-title text-light">{{ vaultTileProp.name }}</h5>
       <h1 v-if="vaultTileProp.isPrivate" style="color: red">PRIVATE</h1>
     </div>
   </div>
@@ -33,9 +24,6 @@ export default {
         name: "VaultDetails",
         params: { vaultId: this.vaultTileProp.id },
       });
-    },
-    deleteVault() {
-      this.$store.dispatch("deleteVault", this.vaultTileProp.id);
     },
   },
 };

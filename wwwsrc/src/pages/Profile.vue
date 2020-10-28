@@ -1,13 +1,17 @@
 <template>
-  <div class="container-fluid">
-    <div class="row card">
-      <div class="col-4"><img :src="profile.picture" /></div>
-      <h1>{{ profile.name }}</h1>
-      <h2>Vaults: {{ vaults.length }}</h2>
-      <h2>Keeps: {{ keeps.length }}</h2>
+  <div class="container">
+    <div class="row my-4">
+      <div class="col-12 col-md-2 text-center">
+        <img class="vprofileimg" :src="profile.picture" />
+      </div>
+      <div class="col-12 col-md-10">
+        <h2>{{ profile.name }}</h2>
+        <h5>Vaults: {{ vaults.length }}</h5>
+        <h5>Keeps: {{ keeps.length }}</h5>
+      </div>
     </div>
-    <div class="row card">
-      <div class="card col-12">
+    <div class="row card border-0">
+      <div class="card col-12 my-2 border-0">
         <h2>
           Vaults
           <i
@@ -25,7 +29,7 @@
           :vaultTileProp="vault"
         />
       </div>
-      <div class="card col-12">
+      <div class="card col-12 my-2 border-0">
         <h2>
           Keeps
           <i
@@ -114,4 +118,11 @@ export default {
 </script>
 
 <style>
+.fa.fa-plus {
+  color: var(--primary);
+  cursor: pointer;
+}
+.vprofileimg {
+  border-radius: 25px;
+}
 </style>
