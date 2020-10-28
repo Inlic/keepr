@@ -34,4 +34,8 @@ export default {
   color: var(--danger);
   cursor: pointer;
 }
+.vault-tile-component {
+  display: inline-block;
+  margin-left: 0.25em;
+}
 </style>

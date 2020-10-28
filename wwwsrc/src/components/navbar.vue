@@ -42,6 +42,11 @@
           </li>
         </ul>
       </div>
+      <div class="row">
+        <span class="navbar-text d-none d-lg-block">
+          <profile-component />
+        </span>
+      </div>
       <span class="navbar-text">
         <!-- Consider changing this to a profile picture -->
         <button
@@ -60,6 +65,7 @@
 <script>
 import { getUserData } from "@bcwdev/auth0-vue";
 import { setBearer, resetBearer } from "../services/AxiosService";
+import profileComponent from "../components/ProfileComponent";
 export default {
   name: "Navbar",
   methods: {
@@ -80,7 +86,14 @@ export default {
       return this.$store.state.profile;
     },
   },
+  components: {
+    profileComponent,
+  },
 };
 </script>
 
-<style></style>
+<style>
+.navbar-toggler {
+  border: 1px solid var(--warning) !important;
+}
+</style>
