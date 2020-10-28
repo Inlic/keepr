@@ -5,18 +5,20 @@
     </div>
     <div class="col-12 col-md-6 mt-2">
       <div class="row">
-        <h5 class="ml-2">
-          <i class="fa fa-eye" aria-hidden="true"></i> {{ keep.views }} |
-          <i class="fa fa-share" aria-hidden="true"></i> {{ keep.shares }} |
-          <i class="fa fa-lock" aria-hidden="true"></i>
-          {{ keep.keeps }}
-        </h5>
+        <div class="col-12 text-center">
+          <h5 class="ml-2">
+            <i class="fa fa-eye" aria-hidden="true"></i> {{ keep.views }} |
+            <i class="fa fa-share" aria-hidden="true"></i> {{ keep.shares }} |
+            <i class="fa fa-lock" aria-hidden="true"></i>
+            {{ keep.keeps }}
+          </h5>
+        </div>
       </div>
       <div class="row">
-        <div class="col-12">
+        <div class="col-12 text-center">
           <h1>{{ keep.name }}</h1>
         </div>
-        <div class="col-12">
+        <div class="col-12 text-center">
           <p>{{ keep.description }}</p>
         </div>
       </div>
