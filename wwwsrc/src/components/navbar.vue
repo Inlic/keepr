@@ -43,7 +43,10 @@
         </ul>
       </div>
       <div class="row">
-        <span class="navbar-text d-none d-lg-block">
+        <span
+          v-if="$auth.isAuthenticated"
+          class="navbar-text d-none d-lg-block"
+        >
           <profile-component />
         </span>
       </div>
