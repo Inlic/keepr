@@ -15,6 +15,7 @@
         <h2>
           Vaults
           <i
+            v-if="myprofile.name == profile.name"
             class="fa fa-plus"
             aria-hidden="true"
             data-toggle="modal"
@@ -34,6 +35,7 @@
         <h2>
           Keeps
           <i
+            v-if="myprofile.name == profile.name"
             class="fa fa-plus"
             aria-hidden="true"
             data-toggle="modal"
