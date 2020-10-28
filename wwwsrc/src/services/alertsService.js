@@ -3,14 +3,14 @@ export default class NotificationService {
   static async confirmDelete() {
     try {
       let res = await Swal.fire({
-        title: "<h2 style='color:#FF88FF'>Are You Sure?</h2>",
+        title: "<h2 style='color:#6cc3d5'>Delete this item?</h2>",
         icon: 'warning',
-        iconColor: "#FF88FF",
+        iconColor: "#ff7851",
         showCancelButton: true,
         confirmButtonText: 'Yes, delete it!',
-        cancelButtonColor: "#81C8FF",
-        confirmButtonColor: "#FF9900",
-        background: "#171228",
+        cancelButtonColor: "#6cc3d5",
+        confirmButtonColor: "#ff7851",
+        background: "#fff",
       })
       if (res.value) {
         return true
@@ -23,14 +23,14 @@ export default class NotificationService {
   static async actionNotice(title = "You did a thing", timer = 1500) {
     try {
       Swal.fire({
-        title: `<h3 style="color: #FF88FF">${title}</h3>`,
+        title: `<h3 style="color:  #56cc9d">${title}</h3>`,
         icon: "success",
-        iconColor: "#FF88FF",
+        iconColor: "#56cc9d",
         timer: timer,
         toast: true,
         position: "top-right",
         showConfirmButton: false,
-        background: "#171228"
+        background: "#fff"
       })
     } catch (error) {
       console.error(error)

@@ -1,7 +1,7 @@
 <template>
   <div class="keep-tile-component card">
     <div data-toggle="modal" :data-target="'#' + modalId" @click="setActive">
-      <div class="card bg-dark text-white mb-0">
+      <div class="card bg-dark text-white mb-0 pointer">
         <img class="card-img" :src="keepTileProp.img" alt="Card image" />
         <div class="card-img-overlay">
           <div v-if="vaultTileProp">
@@ -97,5 +97,8 @@ export default {
   position: absolute;
   top: 8px;
   right: 16px;
+}
+.pointer {
+  cursor: pointer;
 }
 </style>

@@ -24,6 +24,7 @@
       </div>
       <div class="card-columns">
         <vault-tile-component
+          class="pointer"
           v-for="vault in vaults"
           :key="vault.id"
           :vaultTileProp="vault"
@@ -124,5 +125,8 @@ export default {
 }
 .vprofileimg {
   border-radius: 25px;
+}
+.pointer {
+  cursor: pointer;
 }
 </style>

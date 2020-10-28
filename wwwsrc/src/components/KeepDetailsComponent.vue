@@ -4,32 +4,49 @@
       <img :src="keep.img" />
     </div>
     <div class="col-12 col-md-6 mt-2">
-      <h1>{{ keep.name }}</h1>
-      <p>{{ keep.description }}</p>
-      <h5>
-        Views: {{ keep.views }} | Shares: {{ keep.shares }} | Keeps:
-        {{ keep.keeps }}
-      </h5>
-      <div v-if="keep.creator">
-        <i
-          v-if="keep.creator.id == profile.id"
-          class="fa fa-trash"
-          aria-hidden="true"
-          @click.stop="deleteKeep"
-        ></i>
-        | {{ keep.creator.email }} |
-        <img class="detailsimg p-2" :src="keep.creator.picture" />
+      <div class="row">
+        <h5 class="ml-2">
+          Views: {{ keep.views }} | Shares: {{ keep.shares }} | Keeps:
+          {{ keep.keeps }}
+        </h5>
       </div>
-      <div>
+      <div class="row">
+        <div class="col-12">
+          <h1>{{ keep.name }}</h1>
+        </div>
+        <div class="col-12">
+          <p>{{ keep.description }}</p>
+        </div>
+      </div>
+      <div class="row" v-if="keep.creator">
+        <div class="col-2 text-center centertext">
+          <i
+            v-if="keep.creator.id == profile.id"
+            class="fa fa-trash"
+            aria-hidden="true"
+            @click.stop="deleteKeep"
+          ></i>
+        </div>
+        <div class="col-8 text-center centertext">
+          <h6>{{ keep.creator.email }}</h6>
+        </div>
+        <div class="col-2">
+          <img class="detailsimg p-2" :src="keep.creator.picture" />
+        </div>
+      </div>
+      <div class="row">
         <div v-if="$auth.isAuthenticated" class="input-group">
-          <select class="custom-select" v-model="vaultKeep.VaultId">
+          <select
+            class="custom-select form-control"
+            v-model="vaultKeep.VaultId"
+          >
             <option v-for="vault in myVaults" :key="vault.id" :value="vault.id">
               {{ vault.name }}
             </option>
           </select>
           <div class="input-group-append">
             <button
-              class="btn btn-primary"
+              class="btn btn-outline-primary"
               type="button"
               @click="createVaultKeep"
             >
@@ -89,5 +106,10 @@ export default {
   max-width: 50px;
   cursor: pointer;
   border-radius: 25px;
+}
+.centertext {
+  position: relative;
+  top: 1em;
+  right: 1em;
 }
 </style>
