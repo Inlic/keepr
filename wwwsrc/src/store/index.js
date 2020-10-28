@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import { api } from "../services/AxiosService.js";
+import as from "../services/alertsService.js";
 
 Vue.use(Vuex);
 
@@ -150,6 +151,7 @@ export default new Vuex.Store({
         payload.keeps += 1
         let keepsupdate = { keepid: payload.keepid, keeps: payload.keeps }
         await api.post("vaultkeeps", vaultKeep)
+        as.actionNotice("Keep Secured")
         await api.put("keeps/" + payload.keepid + "/stats", keepsupdate)
         let res = await api.get("keeps/" + payload.keepid)
         commit("setActiveKeep", res.data)

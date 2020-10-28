@@ -10,7 +10,16 @@
       </h5>
     </div>
     <div v-if="keep.creator">
-      <h4>{{ keep.creator.email }}</h4>
+      <h5>
+        {{ keep.creator.email }}
+        <i
+          v-if="keep.creator.id == profile.id"
+          class="fa fa-trash"
+          aria-hidden="true"
+          @click.stop="deleteKeep"
+        ></i>
+        <img class="detailsimg float-right p-2" :src="keep.creator.picture" />
+      </h5>
       <div class="input-group">
         <select class="custom-select" v-model="vaultKeep.VaultId">
           <option v-for="vault in myVaults" :key="vault.id" :value="vault.id">
@@ -27,12 +36,6 @@
           </button>
         </div>
       </div>
-      <i
-        v-if="keep.creator.id == profile.id"
-        class="fa fa-trash"
-        aria-hidden="true"
-        @click.stop="deleteKeep"
-      ></i>
     </div>
   </div>
 </template>
@@ -77,6 +80,11 @@ export default {
 <style>
 .fa.fa-trash {
   color: var(--danger);
+  cursor: pointer;
+}
+.detailsimg {
+  max-height: 50px;
+  max-width: 50px;
   cursor: pointer;
 }
 </style>

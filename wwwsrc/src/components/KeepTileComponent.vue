@@ -1,11 +1,6 @@
 <template>
   <div class="keep-tile-component">
-    <div
-      class="card"
-      data-toggle="modal"
-      :data-target="'#' + modalId"
-      @click="setActive"
-    >
+    <div data-toggle="modal" :data-target="'#' + modalId" @click="setActive">
       <div v-if="vaultTileProp">
         <h5 class="float-right" v-if="vaultTileProp.name">
           <i
@@ -90,5 +85,9 @@ export default {
   position: absolute;
   bottom: 8px;
   right: 16px;
+}
+.keep-tile-component {
+  display: inline-block;
+  margin-left: 0.25em;
 }
 </style>
