@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="col-12 col-md-6 text-center mt-2">
-      <img :src="keep.img" />
+      <img class="img-fluid" :src="keep.img" />
     </div>
     <div class="col-12 col-md-6 mt-2">
       <div class="row">

@@ -14,7 +14,9 @@
               ></i>
             </h5>
           </div>
-          <h5 class="card-title">{{ keepTileProp.name }}</h5>
+          <h5 class="card-title tshadow text-light">
+            {{ keepTileProp.name }}
+          </h5>
           <div>
             <img
               class="profileimg"
@@ -100,5 +102,8 @@ export default {
 }
 .pointer {
   cursor: pointer;
+}
+.tshadow {
+  text-shadow: 2px 2px gray;
 }
 </style>

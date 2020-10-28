@@ -5,7 +5,7 @@
   >
     <img src="https://www.placecage.com/200/200" class="card-img" alt="..." />
     <div class="card-img-overlay">
-      <h5 class="card-title text-light">{{ vaultTileProp.name }}</h5>
+      <h5 class="card-title tshadow text-light">{{ vaultTileProp.name }}</h5>
       <h1 v-if="vaultTileProp.isPrivate" style="color: red">PRIVATE</h1>
     </div>
   </div>
@@ -37,5 +37,8 @@ export default {
 .vault-tile-component {
   display: inline-block;
   margin-left: 0.25em;
+}
+.tshadow {
+  text-shadow: 2px 2px gray;
 }
 </style>
