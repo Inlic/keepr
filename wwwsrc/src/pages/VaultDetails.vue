@@ -41,7 +41,6 @@ export default {
   },
   methods: {
     deleteVault() {
-      console.log("clicked");
       this.$store.dispatch("deleteVault", this.vault.id);
     },
   },

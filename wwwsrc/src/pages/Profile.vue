@@ -85,7 +85,6 @@ export default {
       this.$store.dispatch("getSearchedProfile", this.$route.params.profileId);
       this.$store.dispatch("getProfileVaults", this.$route.params.profileId);
       this.$store.dispatch("getProfileKeeps", this.$route.params.profileId);
-      console.log("new" + newVal + "| old" + oldVal);
     },
     deep: true,
     immediate: true,
