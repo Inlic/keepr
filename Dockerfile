@@ -1,7 +1,7 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:3.0
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1
 
-WORKDIR /app
+WORKDIR /App
 
-COPY . .
+COPY bin/Release/netcoreapp3.1/publish/ /App
 
-CMD ASPNETCORE_URLS=http://*:$PORT dotnet CHANGE_ME.dll
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet Keepr.dll
