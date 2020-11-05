@@ -64,7 +64,6 @@ You have been provided the following Figma to provide you the general layout. Wh
 - Cards follow a mansonry layout *(bootstrap card columns OR masonry)*
 	- I used bootstrap card-columns here, but needed to implement additional css to prevent issues on mobile display
 - Clicking on a `keep` card opens the `keep` in a modal which adheres to mock
-		- Understanding modals was a challenging process since I had not used them in prior projects, but I was able to figure out that it was similar to other Vue Components and it could be referenced where necessary. 
 	- Keep Count
 	- View Count
 	- Keep Description
@@ -73,15 +72,18 @@ You have been provided the following Figma to provide you the general layout. Wh
 	- Keep Image
 	- Add to vault functionality
 		- This action created a vaultkeep object in the server which saved the relationship between the keep and the vault
+- Understanding modals was a challenging process since I had not used them in prior projects, but I was able to figure out that it was similar to other Vue Components and it could be referenced where necessary. 
+
 - All users have a public profile page
 - The profile page adheres to mock:
-		- In my initial architecture the profile page would bring up the details of the user that was logged in, so figuring out how to dynamically adjust the profile page when a new user was called was a difficult process.  I eventually created a data object for the user was logged in along with a searched user in order to make sure the correct page was being displayed. 
 	- **Public** vaults
 	- **Private** vaults if it is their own page
 	- Keeps created by that user
 	- Total `keep`s count
 	- Total public `vault`s count
 	- The users name and avatar
+- In my initial architecture the profile page would bring up the details of the user that was logged in, so figuring out how to dynamically adjust the profile page when a new user was called was a difficult process.  I eventually created a data object for the user was logged in along with a searched user in order to make sure the correct page was being displayed.
+
 - Each `vault` has its own route where users can view all of the `keeps` in the vault
 	- I utilized a get by id for vaults here
 - On the `vault` page, if the `vault` is private and not the active users the request fails
