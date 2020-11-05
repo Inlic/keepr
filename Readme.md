@@ -1,4 +1,4 @@
-## Keepr
+## Keepr Project
 
 <img class="img-responsive" src="https://images.unsplash.com/photo-1462045504115-6c1d931f07d1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80">
 
@@ -11,9 +11,9 @@ Users can view the profiles of other users to see
 - Their public collection of `vaults`
 - `Keeps` the user has created
 
-### Goals
+### Application Goals
 
-In this checkpoint students will demonstrate a working knowledge of building full-stack applications. They will utilize a VueJs frontend implementing Vuex and Vue-Router to manage the DOM. On the server side students will use a DotNet WebApi for their server, implementing the Repository pattern to communicate with their MySql database. In addition students will use Auth0 for user management and Dapper as an ORM.
+This was a project to  demonstrate a working knowledge of building full-stack applications. We utilized a VueJs frontend implementing Vuex and Vue-Router to manage the DOM. On the server side we used a DotNet WebApi for their server, implementing the Repository pattern to communicate with our MySql database. In addition we also used Auth0 for user management and Dapper as an ORM.
 
 ### The Concepts
 
@@ -29,17 +29,15 @@ For example I may really like game art and thus:
 
 Lastly I can view other members profiles to see all the `vault`s and `keep`s they have created *(only the public vaults of other users)*, and look at the `keep`s in each of their `vault`s.
 
-### Where is the data?
+### Application Goals
 
-To get started you are going to need to create some models and think about the necessary relationships. You will need to manage the users `profile`, `keep`s, `vault`s and `vaultkeep`s you will also need at least 1 view model for getting keeps by vaultId.
+To get started we created some models and thought about the necessary relationships. We needed to manage the users `profile`, `keep`s, `vault`s and `vaultkeep`s and we also needed to implement a view model for getting keeps by vaultId.
 
-Users will be allowed to create `vault`s where they can organize the posts(`keep`s) of other users so they can recall the `keep`s they enjoy by looking at that particular `vault`.
+Users were allowed to create `vault`s where they can organize the posts(`keep`s) of other users so they can recall the `keep`s they enjoy by looking at that particular `vault`.
 
-In addition to creating and deleting `keep`s and `vault`s, users can add and remove `keep`s from their `vault`s
+In addition to creating and deleting `keep`s and `vault`s, users were able to add and remove `keep`s from their `vault`s
 
 A single user can have many `vault`s but each `vault` will only belong to a single user. 
-
-> See references below for the UML diagram breaking down properties and relationships for these models.
 
 ### Business Rules and Functionality
 
@@ -54,7 +52,60 @@ You have been provided the following Figma to provide you the general layout. Wh
 - [Figma Document](https://www.figma.com/file/Uui3335TxIEXWzgp4xrX9r/Keepr?node-id=0%3A1)
 - [Figma Prototype](https://www.figma.com/proto/Uui3335TxIEXWzgp4xrX9r/Keepr?node-id=1%3A53&scaling=min-zoom)
 
+# Requirements and How I Approached Them
 
+- Visitors can see all `keep`s (login not required)
+	- I accomplished this with a basic get request.
+- `Keep` cards are displayed in accordance to mock
+	- A `keep` card includes image, title, creator avatar
+		- I utilized bootstrap to achieve styling goals while adhering to the required mockup.
+	- Clicking on the creator avatar navigates to the creators profile page *(stop propagate)*
+		- Vue's @click.stop allowed me to pass a command without triggering the router linked keep tile.
+- Cards follow a mansonry layout *(bootstrap card columns OR masonry)*
+	- I used bootstrap card-columns here, but needed to implement additional css to prevent issues on mobile display
+- Clicking on a `keep` card opens the `keep` in a modal which adheres to mock
+		- Understanding modals was a challenging process since I had not used them in prior projects, but I was able to figure out that it was similar to other Vue Components and it could be referenced where necessary. 
+	- Keep Count
+	- View Count
+	- Keep Description
+	- Keep Title
+	- Keep Creator name and avatar
+	- Keep Image
+	- Add to vault functionality
+		- This action created a vaultkeep object in the server which saved the relationship between the keep and the vault
+- All users have a public profile page
+- The profile page adheres to mock:
+		- In my initial architecture the profile page would bring up the details of the user that was logged in, so figuring out how to dynamically adjust the profile page when a new user was called was a difficult process.  I eventually created a data object for the user was logged in along with a searched user in order to make sure the correct page was being displayed. 
+	- **Public** vaults
+	- **Private** vaults if it is their own page
+	- Keeps created by that user
+	- Total `keep`s count
+	- Total public `vault`s count
+	- The users name and avatar
+- Each `vault` has its own route where users can view all of the `keeps` in the vault
+	- I utilized a get by id for vaults here
+- On the `vault` page, if the `vault` is private and not the active users the request fails
+	- I put in authentication checks on the back end to prevent this behavior.
+- From the `vault` page if the user is the creator they can remove `keep`s from the `vault`
+	- This is also another server check on the back end.
+- Anytime a `keep` is `kept in a vault` the keep count is incremented
+	- This was easy to do, but hard to make the data update dynamically.  Due to my architecture I had to refresh the active object as well as the object within the list in the state.
+- Users can Register, login and automatically authenticated on refresh
+- Create and Delete Keeps
+	- Simple Post and Deletes, but with form modals.
+- Create and Delete Vaults
+	- Simple Post and Deletes, but with form modals.
+- Users can only Delete **things they created**
+	- I had to put user checks on the backend to make sure this behavior worked.
+- All deletes require confirmation
+	- I utilized the sweetalert2 package here to create some stylized custom confirmation modals.
+- Add `keeps` to `vault`s
+	- Similar to above I added confirmation toasts with the sweetalert2 package for a better user experience.
+- Remove `keeps` from `vault`s
+- All API Tests pass
+	- I wrote my back end first to pass these tests, but ran into some issues after I built out the front end since some of the tests began to fail.  After walking through each step of the process of creating a vaultkeep object, I realized that I had changed the data type that I was sending back in the server.
+
+---
 ### BONUS Ideas - Sharing the fun
 
 - `Keep`s should be tagged, allowing users find keeps by tag
@@ -64,46 +115,5 @@ You have been provided the following Figma to provide you the general layout. Wh
 - Implement pagination or infinite scroll
 - Users can extend their profile to include a bio, ect...
 
-# Requirements
-
-- Visitors can see all `keep`s (login not required)
-- `Keep` cards are displayed in accordance to mock
-	- A `keep` card includes image, title, creator avatar
-	- Clicking on the creator avatar navigates to the creators profile page *(stop propagate)*
-- Cards follow a mansonry layout *(bootstrap card columns OR masonry)*
-- Clicking on a `keep` card opens the `keep` in a modal which adheres to mock
-	- Keep Count
-	- View Count
-	- Keep Description
-	- Keep Title
-	- Keep Creator name and avatar
-	- Keep Image
-	- Add to vault functionality
-- All users have a public profile page
-- The profile page adheres to mock:
-	- **Public** vaults
-	- **Private** vaults if it is their own page
-	- Keeps created by that user
-	- Total `keep`s count
-	- Total public `vault`s count
-	- The users name and avatar
-- Each `vault` has its own route where users can view all of the `keeps` in the vault
-- On the `vault` page, if the `vault` is private and not the active users the request fails
-- From the `vault` page if the user is the creator they can remove `keep`s from the `vault`
-- Anytime a `keep` is `kept in a vault` the keep count is incremented
-- Users can Register, login and automatically authenticated on refresh
-- Create and Delete Keeps
-- Create and Delete Vaults
-- Users can only Delete **things they created**
-- All deletes require confirmation
-- Add `keeps` to `vault`s
-- Remove `keeps` from `vault`s
-- All API Tests pass
-
-### Finished?
-
-> Make sure you test it. When You are finished submit your project to the gradebook and notify your instructor
-
----
 ***UML Reference***
 ![reference](./References.png)
