@@ -2,7 +2,7 @@
 
 <img class="img-responsive" src="https://images.unsplash.com/photo-1462045504115-6c1d931f07d1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80">
 
-Keepr is a social network that allows users to visually share and discover new interests by posting images or videos that can be "kept" in a collection by those who like the content.
+Keepr is a social network (Similar to Pintrest) that allows users to visually share and discover new interests by posting images or videos that can be "kept" in a collection by those who like the content.
 
 > A collection(`vault`) of posts(`keeps`) with a common theme. 
 
