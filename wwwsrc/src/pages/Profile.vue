@@ -81,7 +81,7 @@ export default {
     this.$store.dispatch("getProfileKeeps", this.$route.params.profileId);
   },
   watch: {
-    myprofile: function (newVal, oldVal) {
+    profile: function (newVal, oldVal) {
       this.$store.dispatch("getSearchedProfile", this.$route.params.profileId);
       this.$store.dispatch("getProfileVaults", this.$route.params.profileId);
       this.$store.dispatch("getProfileKeeps", this.$route.params.profileId);
