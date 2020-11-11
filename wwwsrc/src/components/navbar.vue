@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg navbar-primary bg-primary">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
-        <h1 class="border border-dark p-1">K</h1>
+        <h1 class="border border-dark text-dark py-1 px-2">K</h1>
       </div>
     </router-link>
     <button
@@ -24,7 +24,7 @@
               id="nav-home-link"
               :to="{ name: 'Home' }"
               class="nav-link text-light"
-              >Home
+              ><h3>Home</h3>
             </router-link>
           </li>
           <li
@@ -37,7 +37,7 @@
               class="nav-link text-light"
               :to="{ name: 'Profile', params: { profileId: profile.id } }"
             >
-              Profile</router-link
+              <h3>Profile</h3></router-link
             >
           </li>
         </ul>
@@ -59,7 +59,7 @@
         >
           Login
         </button>
-        <button class="btn btn-secondary" @click="logout" v-else>logout</button>
+        <button class="btn btn-warning" @click="logout" v-else>logout</button>
       </span>
     </div>
   </nav>

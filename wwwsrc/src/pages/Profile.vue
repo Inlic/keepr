@@ -82,11 +82,13 @@ export default {
   },
   watch: {
     profile: function (newVal, oldVal) {
-      this.$store.dispatch("getSearchedProfile", this.$route.params.profileId);
       this.$store.dispatch("getProfileVaults", this.$route.params.profileId);
       this.$store.dispatch("getProfileKeeps", this.$route.params.profileId);
     },
-
+    myprofile: function (newVal, oldVal) {
+      this.$store.dispatch("getProfileVaults", this.$route.params.profileId);
+      this.$store.dispatch("getProfileKeeps", this.$route.params.profileId);
+    },
     "$route.params.profileId": function (newVal, oldVal) {
       this.$store.dispatch("getSearchedProfile", this.$route.params.profileId);
       this.$store.dispatch("getProfileVaults", this.$route.params.profileId);
