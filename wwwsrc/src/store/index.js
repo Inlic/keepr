@@ -13,6 +13,7 @@ export default new Vuex.Store({
     vaults: [],
     searchedProfile: {},
     profileVaults: [],
+    myVaults: [],
     profileKeeps: [],
     activeVault: {},
     vaultKeeps: [],
@@ -21,6 +22,9 @@ export default new Vuex.Store({
   mutations: {
     setProfile(state, profile) {
       state.profile = profile;
+    },
+    setMyVaults(state, myVaults) {
+      state.myVaults = myVaults
     },
     setSearchedProfile(state, searchedProfile) {
       state.searchedProfile = searchedProfile;
@@ -183,6 +187,14 @@ export default new Vuex.Store({
         commit("setProfileVaults", res.data)
       } catch (error) {
         console.error(error);
+      }
+    },
+    async getMyVaults({ commit }, id) {
+      try {
+        let res = await api.get("profiles/" + id + "/vaults")
+        commit("setMyVaults", res.data)
+      } catch (error) {
+        console.error(error)
       }
     }
   },

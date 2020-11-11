@@ -6,7 +6,7 @@
       </div>
       <div class="col-12 col-md-10">
         <h2>{{ profile.name }}</h2>
-        <h5>Vaults: {{ vaults.length }}</h5>
+        <h5>Vaults: {{ profileVaults.length }}</h5>
         <h5>Keeps: {{ keeps.length }}</h5>
       </div>
     </div>
@@ -26,7 +26,7 @@
       <div class="card-columns">
         <vault-tile-component
           class="pointer"
-          v-for="vault in vaults"
+          v-for="vault in profileVaults"
           :key="vault.id"
           :vaultTileProp="vault"
         />
@@ -86,6 +86,7 @@ export default {
       this.$store.dispatch("getProfileKeeps", this.$route.params.profileId);
     },
     myprofile: function (newVal, oldVal) {
+      this.$store.dispatch("getMyVaults", this.$store.state.profile.id);
       this.$store.dispatch("getProfileVaults", this.$route.params.profileId);
       this.$store.dispatch("getProfileKeeps", this.$route.params.profileId);
     },
@@ -107,7 +108,7 @@ export default {
     profile() {
       return this.$store.state.searchedProfile;
     },
-    vaults() {
+    profileVaults() {
       return this.$store.state.profileVaults;
     },
     keeps() {

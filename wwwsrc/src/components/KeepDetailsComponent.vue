@@ -81,7 +81,7 @@ export default {
       return this.$store.state.profile;
     },
     myVaults() {
-      return this.$store.state.profileVaults;
+      return this.$store.state.myVaults;
     },
   },
   methods: {

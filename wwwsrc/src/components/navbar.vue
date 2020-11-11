@@ -57,9 +57,11 @@
           @click="login"
           v-if="!$auth.isAuthenticated"
         >
-          Login
+          <h5>Login</h5>
         </button>
-        <button class="btn btn-warning" @click="logout" v-else>logout</button>
+        <button class="btn btn-warning" @click="logout" v-else>
+          <h5>Logout</h5>
+        </button>
       </span>
     </div>
   </nav>

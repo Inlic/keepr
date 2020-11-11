@@ -55,7 +55,7 @@ export default {
   methods: {
     setActive() {
       this.$store.dispatch("setActiveKeep", this.keepTileProp);
-      this.$store.dispatch("getProfileVaults", this.profile.id);
+      this.$store.dispatch("getMyVaults", this.profile.id);
     },
     viewProfile() {
       this.$router.push({
