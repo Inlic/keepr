@@ -1,5 +1,14 @@
 ## Keepr Project
 
+
+## Final Application Front Page
+
+<div>
+  <img class="img-responsive" style="border: 1px solid black;padding: 10px" src="keepr-front-page.png" />
+</div>
+
+<hr>
+
 <img class="img-responsive" src="https://images.unsplash.com/photo-1462045504115-6c1d931f07d1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80">
 
 Keepr is a social network (Similar to Pintrest) that allows users to visually share and discover new interests by posting images or videos that can be "kept" in a collection by those who like the content.
